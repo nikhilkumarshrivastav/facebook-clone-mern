@@ -13,7 +13,7 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
             {/* <SidebarRow src={user.photoURL} title={user.displayName} /> */}
-            <SidebarRow src="" title="Isen" />
+            <SidebarRow src="https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg" title="Isen" />
             <SidebarRow Icon={LocalHospitalIcon} title='COVID-19 Information Center' />
 
             <SidebarRow Icon={EmojiFlagsIcon} title='Pages' />
