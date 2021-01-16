@@ -1,23 +1,29 @@
-import React from 'react'
-import StoryReel from './StoryReel'
+import React, { useEffect, useState } from 'react'
+import './Feed.css'
 import MessageSender from './MessageSender'
 import Post from './Post'
+import StoryReel from './StoryReel'
+import axios from '../axios'
+import Pusher from 'pusher-js'
+
+import db from '../firebase'
 
 const Feed = () => {
+    const [profilePic, setProfilePic] = useState('')
+    const [postsData, setPostsData] = useState([])
+
+    useEffect(() => {
+        db.collection('posts').onSnapshot(snapshot => (
+            setPostsData(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+        ))
+    }, [])
+
     return (
         <div className='feed' >
             <StoryReel />
             <MessageSender />
 
-            <Post
-            profilePic='https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg'
-            message='This is a message!'
-            timestamp='1601493943737'
-            imgName='imgName'
-            username='Isen'
-            />
-
-            {/* {
+            {
                 postsData.map(entry => (
                     <Post
                         profilePic={entry.avatar}
@@ -27,7 +33,7 @@ const Feed = () => {
                         username={entry.user}
                     />
                 ))
-            } */}
+            }
         </div>
     )
 }
