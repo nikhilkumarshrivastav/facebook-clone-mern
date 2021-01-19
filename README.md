@@ -22,7 +22,7 @@ This link directs you to the recorded demo of the application: https://youtu.be/
 * Express - version 4.17.1
 * React - version 17.0.1
 * Node.JS - version 14.15.4
-<br />Additional Technologies:
+<br /> <br /> Additional Technologies:
 * Pusher API
 * Firebase
 
