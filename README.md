@@ -48,4 +48,4 @@ The project may be continued at a later date. Since the purpose of the project w
 This project was inspired by and based on the work of [@drakosi99](https://github.com/drakosi99). Great appreciation for his tutorials.
 
 ## Contact
-Created by @isenkasa
+Created by Isen Kasa.
