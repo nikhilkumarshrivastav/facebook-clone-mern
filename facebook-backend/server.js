@@ -8,13 +8,21 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import Pusher from 'pusher'
 
-import mongoPost from './postModel.js'
+import mongoPosts from './mongoPosts.js'
 
 Grid.mongo = mongoose.mongo
 
 // app config
 const app = express()
 const port = process.env.PORT || 9000
+
+const pusher = new Pusher({
+    appId: "1140610",
+    key: "b4cb1be9bf227d28ad86",
+    secret: "2064e9d5ce5c187fcc68",
+    cluster: "us2",
+    useTLS: true
+  });
 
 // middlewares
 app.use(bodyParser.json());
@@ -27,6 +35,22 @@ const conn = mongoose.createConnection(mongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
+})
+
+mongoose.connection.once('open', () => {
+    console.log('DB Connected')
+
+    const changeStream = mongoose.connection.collection('posts').watch()
+
+    changeStream.on('change', (change) => {
+        if(change.operationType === 'insert') {
+            pusher.trigger('posts', 'inserted', {
+                change: change
+            })
+        } else {
+            console.log('Error triggering Pusher')
+        }
+    })
 })
 
 let gfs
@@ -69,7 +93,7 @@ app.post('/upload/image', upload.single('file'), (req, res) => {
     res.status(201).send(req.file)
 })
 
-app.post('/upload/post',(req,res)=> {
+app.post('/upload/post', (req,res)=> {
     const dbPost = req.body
 
     mongoPosts.create(dbPost, (err, data) => {
