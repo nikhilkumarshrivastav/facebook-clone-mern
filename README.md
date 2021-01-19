@@ -22,9 +22,9 @@ This link directs you to the recorded demo of the application: https://youtu.be/
 * Express - version 4.17.1
 * React - version 17.0.1
 * Node.JS - version 14.15.4
-<br /> <br /> Additional Technologies:
-* Pusher API
-* Firebase
+* Additional Technologies:
+** Pusher API
+** Firebase
 
 ## Setup
 The application is built to run on a local environment - it does not need to be deployed. You need to run the Frontend and Backend separately. Instructions on how to do so will be included in their respective directories.
