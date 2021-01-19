@@ -1,5 +1,5 @@
 # Facebook Clone
-> A Facebook Clone created using the MERN stack - MongoDB, Express, React, Node.JS
+> A Facebook Clone App created using the MERN stack - MongoDB, Express, React, Node.JS
 
 ## Table of contents
 * [General Info](#general-info)
@@ -15,7 +15,7 @@
 The purpose of the project is to recreate Facebook as closely as possible using modern technologies. The motivation behind the project was the gain of experience and improvement of skillset using the MERN stack.
 
 ## Video Demo
-This link directs you to the recorded demo of the application: insert-link-here
+This link directs you to the recorded demo of the application: https://youtu.be/G-HTQDmvhG4
 
 ## Technologies
 * MongoDB - version 4.4
