@@ -4,11 +4,20 @@ import { Avatar, Input } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam'
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon'
+import { useStateValue } from '../StateProvider'
+import firebase from 'firebase'
+import db from '../firebase'
+
+import axios from '../axios'
+import FormData from 'form-data'
 
 const MessageSender = () => {
-
-    const [input, setInput]=useState('')
+    const [input, setInput] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
     const [image, setImage] = useState(null)
+    const [{ user }, dispatch] = useStateValue()
+
+    console.log(user)
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -16,32 +25,32 @@ const MessageSender = () => {
         }
     }
 
-    const handleSubmit = () => {
-        console.log('Submitting')
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        db.collection('posts').add({
+            message: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profilePic: user.photoURL,
+            username: user.displayName,
+            image: imageUrl
+        })
+
+        setImageUrl('')
+        setInput('')
+        setImage(null)
     }
 
     return (
-        <div className='messageSender'>
+        <div className='messageSender' >
             <div className="messageSender__top">
-                <Avatar src='https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg'/>
+                <Avatar src={user.photoURL} />
                 <form >
-                    <input 
-                    type="text" 
-                    className='messageSender__input' 
-                    placeholder="What's on your mind?" 
-                    value={input} onChange={(e) => setInput(e.target.value)} />
-                    
-                    <Input 
-                    type="file" 
-                    className='messageSender__fileSelector' 
-                    onChange={handleChange} />
-
-                    <button 
-                    onClick={handleSubmit} 
-                    type='submit' >Hidden Submit</button>  
+                    <input type="text" className='messageSender__input' placeholder="What's on your mind?" value={input} onChange={(e) => setInput(e.target.value)} />
+                    <Input type="file" className='messageSender__fileSelector' onChange={handleChange} />
+                    <button onClick={handleSubmit} type='submit' >Hidden Submit</button>
                 </form>
             </div>
-
             <div className="messageSender__bottom">
                 <div className="messageSender__option">
                     <VideocamIcon style={{ color: 'red' }} />
