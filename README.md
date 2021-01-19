@@ -45,7 +45,8 @@ To-do list:
 The project may be continued at a later date. Since the purpose of the project was practice using MERN, all of the original Facebook functionality may not be added.
 
 ## Inspiration
-This project was inspired by and based on the work of @drakosi99. Great appreciation for his tutorials.
+This project was inspired by and based on the work of @drakosi99 
+Great appreciation for his tutorials.
 
 ## Contact
-Created by @isenkasa.
+Created by @isenkasa
