@@ -1,6 +1,8 @@
 # Facebook Clone
 > A Facebook Clone App created using the MERN stack - MongoDB, Express, React, Node.JS
 
+![facebook-clone-demo-pic](https://user-images.githubusercontent.com/65561129/116451517-2cdd7f00-a822-11eb-8a5f-b0c1b4cf698e.png)
+
 ## Table of contents
 * [General Info](#general-info)
 * [Video Demo](#video-demo)
